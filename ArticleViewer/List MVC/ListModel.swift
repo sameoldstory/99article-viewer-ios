@@ -8,17 +8,24 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
 
 struct ArticleProfile {
     let title: String
     let category: String
     let url: String
+    //let pic: UIImage
 }
 
 class ListModel {
     private var articleListUrl = "https://99percentinvisible.org/articles/"
     
     private var articles = [ArticleProfile]()
+    
+    private let articlePattern = "<article class=\"post-block post article\">(\n.+)*</article>"
+    private let titlePattern = "<h3 class=\"post-title\">(.*)</h3>"
+    private let categoryPattern =  "<p class=\"meta-label\">Category</p>\n.*<p>(.*)</p>"
+    private let urlPattern = "<a class=\"post-image\" href=\"(.*)\" style"
     
     private func getArrayOfMatchingStrings(withPattern pattern: String, inString string: String, groupNumber number: Int) -> [String]? {
         var matchingStrings = [String]()
@@ -36,19 +43,22 @@ class ListModel {
         return matchingStrings
     }
     
+    private func returnNewArticleProfile(htmlChunk: String) -> ArticleProfile
+    {
+        let title = self.getArrayOfMatchingStrings(withPattern: titlePattern, inString: htmlChunk, groupNumber: 1)![0]
+        let category = self.getArrayOfMatchingStrings(withPattern: categoryPattern, inString: htmlChunk, groupNumber: 1)![0]
+        let url = self.getArrayOfMatchingStrings(withPattern: urlPattern, inString: htmlChunk, groupNumber: 1)![0]
+        //self.articles += [ArticleProfile(title: title, category: category, url: url)]
+        return ArticleProfile(title: title, category: category, url: url)
+    }
+    
     func getArticleProfiles(completionHandler: @escaping ([ArticleProfile]) -> ()) {
         Alamofire.request(articleListUrl).responseString { response in
             if let htmlSource = response.result.value {
-                let pattern = "<article class=\"post-block post article\">(\n.+)*</article>"
-                if let htmlChunks = self.getArrayOfMatchingStrings(withPattern: pattern, inString: htmlSource, groupNumber: 0) {
-                    let titlePattern = "<h3 class=\"post-title\">(.*)</h3>"
-                    let categoryPattern =  "<p class=\"meta-label\">Category</p>\n.*<p>(.*)</p>"
-                    let urlPattern = "<a class=\"post-image\" href=\"(.*)\" style"
+                if let htmlChunks = self.getArrayOfMatchingStrings(withPattern: self.articlePattern, inString: htmlSource, groupNumber: 0) {
                     for chunk in htmlChunks {
-                        let title = self.getArrayOfMatchingStrings(withPattern: titlePattern, inString: chunk, groupNumber: 1)![0]
-                        let category = self.getArrayOfMatchingStrings(withPattern: categoryPattern, inString: chunk, groupNumber: 1)![0]
-                        let url = self.getArrayOfMatchingStrings(withPattern: urlPattern, inString: chunk, groupNumber: 1)![0]
-                        self.articles += [ArticleProfile(title: title, category: category, url: url)]
+                        let articleProfile = self.returnNewArticleProfile(htmlChunk: chunk)
+                        articles += [articleProfile]
                     }
                 }
             } else {
