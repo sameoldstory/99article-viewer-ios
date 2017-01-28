@@ -81,11 +81,22 @@ class ArticleListTableViewController: UITableViewController {
         
         cell.articleName.text = article.title
         cell.articleCategory.text = article.category
-        cell.articlePic.image = UIImage(named: "Sample1")
+        //cell.articlePic.image = UIImage(named: "Sample1")
+        let url = URL(string:article.imageUrl)!
+        //cell.articlePic = UIImageView()
+        cell.articlePic.af_setImage(withURL: url, placeholderImage: UIImage(named: "Sample1")) { response in
+            switch response.result {
+            case .success:
+                print("Validation Successful")
+            case .failure(let error):
+                print(error)
+            }
+        }
         
         return cell
 
     }
+    
     
 
     /*

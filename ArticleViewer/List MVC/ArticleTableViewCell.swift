@@ -11,7 +11,6 @@ import UIKit
 class ArticleTableViewCell: UITableViewCell {
 
     @IBOutlet weak var articleName: UILabel!
-    
     @IBOutlet weak var articleCategory: UILabel!
     @IBOutlet weak var articlePic: UIImageView!
     

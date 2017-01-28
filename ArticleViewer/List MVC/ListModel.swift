@@ -14,6 +14,7 @@ struct ArticleProfile {
     let title: String
     let category: String
     let url: String
+    let imageUrl: String
     //let pic: UIImage
 }
 
@@ -26,6 +27,7 @@ class ListModel {
     private let titlePattern = "<h3 class=\"post-title\">(.*)</h3>"
     private let categoryPattern =  "<p class=\"meta-label\">Category</p>\n.*<p>(.*)</p>"
     private let urlPattern = "<a class=\"post-image\" href=\"(.*)\" style"
+    private let imageUrlPattern = "style=\"background-image: url\\('(.*)'\\);"
     
     private func getArrayOfMatchingStrings(withPattern pattern: String, inString string: String, groupNumber number: Int) -> [String]? {
         var matchingStrings = [String]()
@@ -48,8 +50,8 @@ class ListModel {
         let title = self.getArrayOfMatchingStrings(withPattern: titlePattern, inString: htmlChunk, groupNumber: 1)![0]
         let category = self.getArrayOfMatchingStrings(withPattern: categoryPattern, inString: htmlChunk, groupNumber: 1)![0]
         let url = self.getArrayOfMatchingStrings(withPattern: urlPattern, inString: htmlChunk, groupNumber: 1)![0]
-        //self.articles += [ArticleProfile(title: title, category: category, url: url)]
-        return ArticleProfile(title: title, category: category, url: url)
+        let imageUrl = self.getArrayOfMatchingStrings(withPattern: imageUrlPattern, inString: htmlChunk, groupNumber: 1)![0]
+        return ArticleProfile(title: title, category: category, url: url, imageUrl: imageUrl)
     }
     
     func getArticleProfiles(completionHandler: @escaping ([ArticleProfile]) -> ()) {
@@ -58,7 +60,7 @@ class ListModel {
                 if let htmlChunks = self.getArrayOfMatchingStrings(withPattern: self.articlePattern, inString: htmlSource, groupNumber: 0) {
                     for chunk in htmlChunks {
                         let articleProfile = self.returnNewArticleProfile(htmlChunk: chunk)
-                        articles += [articleProfile]
+                        self.articles += [articleProfile]
                     }
                 }
             } else {
