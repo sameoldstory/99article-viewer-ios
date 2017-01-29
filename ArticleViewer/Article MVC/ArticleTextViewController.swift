@@ -16,10 +16,15 @@ class ArticleTextViewController: UIViewController {
     
     @IBOutlet weak var articleText: UILabel!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let transform = CGAffineTransform(scaleX: 2, y: 2)
+        activityIndicator.transform = transform
         articleTitle.text = articleModel.articleTitle ?? "Default name"
         articleModel.getArticleText() { text in
+            self.activityIndicator.stopAnimating()
             self.articleText.text = text
         }
         //self.view.setNeedsDisplay()
