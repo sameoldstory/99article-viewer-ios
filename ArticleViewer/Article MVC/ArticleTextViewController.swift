@@ -18,10 +18,9 @@ class ArticleTextViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let title = articleModel.articleTitle ?? "Default name"
-        articleTitle.text = title
+        articleTitle.text = articleModel.articleTitle ?? "Default name"
+        articleModel.getArticleText()
         //self.view.setNeedsDisplay()
-        //navigationItem.title = articleModel.articleName ?? "Default name"
         // Do any additional setup after loading the view.
     }
 

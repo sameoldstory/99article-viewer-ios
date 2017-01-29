@@ -29,35 +29,22 @@ class ListModel {
     private let urlPattern = "<a class=\"post-image\" href=\"(.*)\" style"
     private let imageUrlPattern = "style=\"background-image: url\\('(.*)'\\);"
     
-    private func getArrayOfMatchingStrings(withPattern pattern: String, inString string: String, groupNumber number: Int) -> [String]? {
-        var matchingStrings = [String]()
-        do {
-            let regex = try NSRegularExpression(pattern: pattern)
-            let nsstring = string as NSString
-            let matches = regex.matches(in: string, range: NSRange(location: 0, length: nsstring.length))
-            for match in matches {
-                matchingStrings += [nsstring.substring(with: match.rangeAt(number))]
-            }
-        } catch {
-            print("Regex error")
-            return nil
-        }
-        return matchingStrings
-    }
+
     
     private func returnNewArticleProfile(htmlChunk: String) -> ArticleProfile
     {
-        let title = self.getArrayOfMatchingStrings(withPattern: titlePattern, inString: htmlChunk, groupNumber: 1)![0]
-        let category = self.getArrayOfMatchingStrings(withPattern: categoryPattern, inString: htmlChunk, groupNumber: 1)![0]
-        let url = self.getArrayOfMatchingStrings(withPattern: urlPattern, inString: htmlChunk, groupNumber: 1)![0]
-        let imageUrl = self.getArrayOfMatchingStrings(withPattern: imageUrlPattern, inString: htmlChunk, groupNumber: 1)![0]
+
+        let title = Matcher.getArrayOfMatchingStrings(withPattern: titlePattern, inString: htmlChunk, groupNumber: 1)![0]
+        let category = Matcher.getArrayOfMatchingStrings(withPattern: categoryPattern, inString: htmlChunk, groupNumber: 1)![0]
+        let url = Matcher.getArrayOfMatchingStrings(withPattern: urlPattern, inString: htmlChunk, groupNumber: 1)![0]
+        let imageUrl = Matcher.getArrayOfMatchingStrings(withPattern: imageUrlPattern, inString: htmlChunk, groupNumber: 1)![0]
         return ArticleProfile(title: title, category: category, url: url, imageUrl: imageUrl)
     }
     
     func getArticleProfiles(completionHandler: @escaping ([ArticleProfile]) -> ()) {
         Alamofire.request(articleListUrl).responseString { response in
             if let htmlSource = response.result.value {
-                if let htmlChunks = self.getArrayOfMatchingStrings(withPattern: self.articlePattern, inString: htmlSource, groupNumber: 0) {
+                if let htmlChunks = Matcher.getArrayOfMatchingStrings(withPattern: self.articlePattern, inString: htmlSource, groupNumber: 0) {
                     for chunk in htmlChunks {
                         let articleProfile = self.returnNewArticleProfile(htmlChunk: chunk)
                         self.articles += [articleProfile]

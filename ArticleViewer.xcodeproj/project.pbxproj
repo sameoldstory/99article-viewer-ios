@@ -11,6 +11,8 @@
 		FA2629601E37EC5E00E96FC2 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA26295F1E37EC5E00E96FC2 /* ArticleTableViewCell.swift */; };
 		FA39A4161E3BE5F000988684 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA39A4091E3BE55500988684 /* AlamofireImage.framework */; };
 		FA39A4171E3BE5F000988684 /* AlamofireImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA39A4091E3BE55500988684 /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FA39A41B1E3CB85A00988684 /* HTTPCodesRemover.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39A41A1E3CB85A00988684 /* HTTPCodesRemover.swift */; };
+		FA39A41F1E3CECF100988684 /* Matcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39A41E1E3CECF100988684 /* Matcher.swift */; };
 		FA5215D11E26B3B00014AC95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5215D01E26B3B00014AC95 /* AppDelegate.swift */; };
 		FA5215D61E26B3B00014AC95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5215D41E26B3B00014AC95 /* Main.storyboard */; };
 		FA5215D91E26B3B00014AC95 /* ArticleViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA5215D71E26B3B00014AC95 /* ArticleViewer.xcdatamodeld */; };
@@ -157,6 +159,8 @@
 		FA26295D1E37C79D00E96FC2 /* ArticleListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleListTableViewController.swift; sourceTree = "<group>"; };
 		FA26295F1E37EC5E00E96FC2 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		FA39A3FC1E3BE55500988684 /* AlamofireImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AlamofireImage.xcodeproj; path = AlamofireImage/AlamofireImage.xcodeproj; sourceTree = "<group>"; };
+		FA39A41A1E3CB85A00988684 /* HTTPCodesRemover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPCodesRemover.swift; sourceTree = "<group>"; };
+		FA39A41E1E3CECF100988684 /* Matcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matcher.swift; sourceTree = "<group>"; };
 		FA5215CD1E26B3B00014AC95 /* ArticleViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArticleViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5215D01E26B3B00014AC95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA5215D51E26B3B00014AC95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -218,6 +222,8 @@
 		FA5215CF1E26B3B00014AC95 /* ArticleViewer */ = {
 			isa = PBXGroup;
 			children = (
+				FA39A41E1E3CECF100988684 /* Matcher.swift */,
+				FA39A41A1E3CB85A00988684 /* HTTPCodesRemover.swift */,
 				FA5216081E2BE0ED0014AC95 /* Supporting Files */,
 				FA994FBA1E3A4217008B49DA /* ArticleTextMVC */,
 				FA994FB91E3A41FF008B49DA /* ArticleListMVC */,
@@ -467,6 +473,8 @@
 				FA2629601E37EC5E00E96FC2 /* ArticleTableViewCell.swift in Sources */,
 				FA994FB81E3A3AAD008B49DA /* ArticleModel.swift in Sources */,
 				FA5215D91E26B3B00014AC95 /* ArticleViewer.xcdatamodeld in Sources */,
+				FA39A41F1E3CECF100988684 /* Matcher.swift in Sources */,
+				FA39A41B1E3CB85A00988684 /* HTTPCodesRemover.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
