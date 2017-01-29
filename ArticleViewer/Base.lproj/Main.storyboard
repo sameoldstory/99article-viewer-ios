@@ -103,9 +103,9 @@
                                 <rect key="frame" x="16" y="153" width="343" height="506"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbq-jp-bat">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="520"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="300"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="520" id="mdE-AY-rcx"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="mdE-AY-rcx"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
