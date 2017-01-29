@@ -33,8 +33,8 @@ class ListModel {
     
     private func returnNewArticleProfile(htmlChunk: String) -> ArticleProfile
     {
-
-        let title = Matcher.getArrayOfMatchingStrings(withPattern: titlePattern, inString: htmlChunk, groupNumber: 1)![0]
+        var title = Matcher.getArrayOfMatchingStrings(withPattern: titlePattern, inString: htmlChunk, groupNumber: 1)![0]
+        title = HTMLCleaner.turnCodesInSymbols(inString: title)
         let category = Matcher.getArrayOfMatchingStrings(withPattern: categoryPattern, inString: htmlChunk, groupNumber: 1)![0]
         let url = Matcher.getArrayOfMatchingStrings(withPattern: urlPattern, inString: htmlChunk, groupNumber: 1)![0]
         let imageUrl = Matcher.getArrayOfMatchingStrings(withPattern: imageUrlPattern, inString: htmlChunk, groupNumber: 1)![0]

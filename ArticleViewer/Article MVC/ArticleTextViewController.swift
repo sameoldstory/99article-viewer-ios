@@ -19,7 +19,9 @@ class ArticleTextViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         articleTitle.text = articleModel.articleTitle ?? "Default name"
-        articleModel.getArticleText()
+        articleModel.getArticleText() { text in
+            self.articleText.text = text
+        }
         //self.view.setNeedsDisplay()
         // Do any additional setup after loading the view.
     }
