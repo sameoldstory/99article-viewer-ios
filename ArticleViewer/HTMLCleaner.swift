@@ -38,8 +38,10 @@ class HTMLCleaner {
         var newText = text
         if let links = Matcher.getArrayOfMatchingStrings(withPattern: httpLinkPattern, inString: text, groupNumber: 0),
             let substitutes = Matcher.getArrayOfMatchingStrings(withPattern: httpLinkPattern, inString: text, groupNumber: 1) {
-            for index in 0...links.count-1 {
-                newText = newText.replacingOccurrences(of: links[index], with: substitutes[index])
+            if (links.count > 0) {
+                for index in 0...links.count-1 {
+                    newText = newText.replacingOccurrences(of: links[index], with: substitutes[index])
+                }
             }
         }
         return newText
